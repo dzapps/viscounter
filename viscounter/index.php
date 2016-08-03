@@ -1,10 +1,10 @@
 
 
 <html> 
-	<head>
+  <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Datepicker - Default functionality</title>
+  <title>Viscounter - View Stats</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -19,14 +19,29 @@
 
 <body>
 <form action="viewstats.php" method="get">
-View Stats
-<br>
+<b>VIEW STATS</b>
+<br><br>
 from
-<input id="from" name="from" type="date" />
+<input id="from" name="from" type="date" /><br>
 to
-<input id="to" name="to" type="date" />
+<input id="to" name="to" type="date" /><br>
+<br>
+<br>
 
 <input type="submit" value="Submit"></input>
 </form>
+
+<b>Blocking Cookie</b><br>
+<?php
+$cookie_name = "viscounter";
+if($_COOKIE[$cookie_name] != "true") {
+    echo "Cookie is NOT set!";
+} else {
+    echo "Cookie is set!";
+}
+?>
+<br>
+<button onclick="window.location.href='unsetblockingcookie.php'">Unset</button>
+<button onclick="window.location.href='setblockingcookie.php'">Set</button>
 </body>
 </html>

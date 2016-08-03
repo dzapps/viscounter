@@ -106,8 +106,10 @@ $hits = 0;
 
 $LOGFILE = "viscounter_log.dat";
 $COUNTFILE = "viscounter_count.dat";
-
-
+$cookie_name = "viscounter";
+if($_COOKIE[$cookie_name] == "true") {
+    die();
+}
 
 if(!file_exists($LOGFILE))
 {
@@ -122,6 +124,9 @@ if(!file_exists($COUNTFILE))
    fwrite($fp,""); 
    fclose($fp);
 }
+
+
+
 
 $date = time();
 
