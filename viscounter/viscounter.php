@@ -104,8 +104,8 @@ $caller = $_SERVER['HTTP_REFERER'];
 $ip = get_client_ip();
 $hits = 0;
 
-$LOGFILE = "mincount_log.dat";
-$COUNTFILE = "mincount_count.dat";
+$LOGFILE = "viscounter_log.dat";
+$COUNTFILE = "viscounter_count.dat";
 
 
 

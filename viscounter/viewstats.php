@@ -40,8 +40,8 @@ function createDateRangeArray($strDateFrom,$strDateTo)
     return $aryRange;
 }
 
-$LOGFILE = "mincount_log.dat";
-$COUNTFILE = "mincount_count.dat";
+$LOGFILE = "viscounter_log.dat";
+$COUNTFILE = "viscounter_count.dat";
 
 $array = get2DArrayFromCsv($LOGFILE, ",");
 $array2 = get2DArrayFromCsv($COUNTFILE, ",");
