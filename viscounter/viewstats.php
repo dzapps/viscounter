@@ -6,6 +6,15 @@
 <body>
 <?php
 
+if ($_GET["from"] == "")  {
+	echo "Please enter a valid start date.";
+	die();
+}
+if ($_GET["to"] == "") {
+	echo "Please enter a valid end date.";
+	die();
+}
+
 function get2DArrayFromCsv($file, $delimiter) {
     if (($handle = fopen($file, "r+")) !== FALSE) {
         $i = 0;
