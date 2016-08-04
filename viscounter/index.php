@@ -20,12 +20,14 @@
 <body>
 <form action="viewstats.php" method="get">
 <b>VIEW STATS</b>
-<br><br>
-from
-<input id="from" name="from" type="date" /><br>
-to
-<input id="to" name="to" type="date" /><br>
+<br><br><table>
+	<tr>
+<td>from</td>
+<td><input id="from" name="from" type="date" /></td></tr>
+<tr><td>to</td>
+<td><input id="to" name="to" type="date" /></td></tr>
 <br>
+</table>
 <br>
 
 <input type="submit" value="Submit"></input>
