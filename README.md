@@ -1,15 +1,18 @@
 # Viscounter
 PHP based minimalistic hit counter for websites.
 
+
 ##Special Features
 * very easy installation
 * works out of the box without any further configuration
 * blocking cookie probiting your own visits being counted
 
 
+
+
 ##How to use: 3 simple steps
 ###Step 1: Copy files
-Copy the "viscounter" directory (containing "viscounter.php" etc.) into the root folder of your website so that it is accessible by navigating to "`http://yourwebsite.com/viscounter`".
+Copy the "viscounter" directory (containing "viscounter.php" etc.) into the root folder of your website so that it is accessible by navigating to `http://yourwebsite.com/viscounter`.
 
 ###Step 2: Installation
 For invisible tracking add the following code to the template file of your CMS or any other page that should be taken into account.
@@ -31,6 +34,8 @@ There you will find:
 * daily visitors within selected time frame
 * detailed hit statistics for every single page
 * recent pageloads with client info
+
+
 
 
 ## Things to implement
