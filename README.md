@@ -5,7 +5,7 @@ PHP based minimalistic hit counter for websites.
 ##Special Features
 * very easy installation
 * works out of the box without any further configuration
-* blocking cookie probiting your own visits being counted
+* blocking cookie prohibiting your own visits being counted
 
 
 
