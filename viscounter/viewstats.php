@@ -5,18 +5,32 @@
 </head>
 <body>
 <?php
+
+$LOGFILE = "viscounter_log.dat";
+$COUNTFILE = "viscounter_count.dat";
+
+
 //ERROR HANDLING
+if (file_exists($LOGFILE) == 0) {
+    fatal_error("No data yet?");
+}
+
+
 if ($_GET["from"] == "")  {
-	echo "Please enter a valid start date.";
-	die();
+	fatal_error("Please enter a valid start date.");
 }
 if ($_GET["to"] == "") {
-	echo "Please enter a valid end date.";
+	fatal_error("Please enter a valid end date.");
+}
+
+//FUNCTION DECLARATIONS
+
+function fatal_error($text){
+	echo '<div style="background-color:red;color:white;padding:2%;">'.$text.'</div><br><br><a href="index.php">Back</a>';
 	die();
 }
 
 
-//FUNCTION DECLARATIONS
 function get2DArrayFromCsv($file, $delimiter) {
     if (($handle = fopen($file, "r+")) !== FALSE) {
         $i = 0;
@@ -41,10 +55,10 @@ function createDateRangeArray($strDateFrom,$strDateTo)
 
     if ($iDateTo>=$iDateFrom)
     {
-        array_push($aryRange,date('Y-m-d',$iDateFrom)); // first entry
+        array_push($aryRange,date('Y-m-d',$iDateFrom)); 
         while ($iDateFrom<$iDateTo)
         {
-            $iDateFrom+=86400; // add 24 hours
+            $iDateFrom+=86400; 
             array_push($aryRange,date('Y-m-d',$iDateFrom));
         }
     }
@@ -65,9 +79,8 @@ function getasciibar($count, $max) {
 
 
 //PREPARATION
-$LOGFILE = "viscounter_log.dat";
-$COUNTFILE = "viscounter_count.dat";
 
+	
 $array = get2DArrayFromCsv($LOGFILE, ",");
 $array2 = get2DArrayFromCsv($COUNTFILE, ",");
 
@@ -124,12 +137,24 @@ echo "<br><br><b>PAGE HITS</b><br><br>";
 
 $out  = "";
 $out .= "<table>";
+
+$maxvalue = 10;
+foreach($array2 as $key => $element){
+    foreach($element as $subkey => $subelement){
+        $count = $subelement;
+    }
+    if ($count > $maxvalue) { 
+		$maxvalue = $count;
+	}
+}
+
 foreach($array2 as $key => $element){
     $out .= "<tr>";
     foreach($element as $subkey => $subelement){
-        $out .= "<td>$subelement</td><td></td>";
+        $out .= "<td>$subelement</td>";
+        $count = $subelement;
     }
-    $out .= "</tr>";
+    $out .= "<td>".getasciibar($count, $maxvalue)."</td></tr>";
 }
 $out .= "</table><br><br>";
 echo $out;
