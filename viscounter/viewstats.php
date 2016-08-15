@@ -1,11 +1,11 @@
 <html>
 <head>
 
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
 <?php
-
+//ERROR HANDLING
 if ($_GET["from"] == "")  {
 	echo "Please enter a valid start date.";
 	die();
@@ -15,6 +15,8 @@ if ($_GET["to"] == "") {
 	die();
 }
 
+
+//FUNCTION DECLARATIONS
 function get2DArrayFromCsv($file, $delimiter) {
     if (($handle = fopen($file, "r+")) !== FALSE) {
         $i = 0;
@@ -49,6 +51,20 @@ function createDateRangeArray($strDateFrom,$strDateTo)
     return $aryRange;
 }
 
+function getasciibar($count, $max) {
+	$MAXLENGTH = 30;
+	$BARCHAR = "█";
+	if ($max == "") {
+		$bar = "";
+	}
+	else {
+		$bar = str_repeat($BARCHAR,($count / $max)*$MAXLENGTH);
+	}
+	return $bar;
+}
+
+
+//PREPARATION
 $LOGFILE = "viscounter_log.dat";
 $COUNTFILE = "viscounter_count.dat";
 
@@ -87,30 +103,38 @@ $data = array();
 
 $TOTALINTERVAL = 0;
 $OUT = "";
+
+$maxvalue = max(array_values($datescounted));
 foreach ($statdates as $statdate) {
 	
 	$count = $datescounted[$statdate];
 	if ($count == null) {$count = "0";}
-	$OUT = $OUT."<br>$statdate&emsp;$count";
+	$OUT = $OUT."<br>$statdate&emsp;$count&emsp;".getasciibar($count, $maxvalue);
 	$TOTALINTERVAL += $count;
 }
 
 
+//OUTPUT
+//Total & Selection by day with ascii bar graph
+
 echo "<b>TOTAL</b><br>$TOTAL<br><br><b>SELECTION</b><br>$TOTALINTERVAL<br><br>$OUT";
 
-
+//Page hits
 echo "<br><br><b>PAGE HITS</b><br><br>";
+
 $out  = "";
 $out .= "<table>";
 foreach($array2 as $key => $element){
     $out .= "<tr>";
     foreach($element as $subkey => $subelement){
-        $out .= "<td>$subelement</td>";
+        $out .= "<td>$subelement</td><td></td>";
     }
     $out .= "</tr>";
 }
 $out .= "</table><br><br>";
 echo $out;
+
+//Recent pageloads
 
 echo "<br><br><b>RECENT PAGELOADS</b><br><br>";
 $out  = "";

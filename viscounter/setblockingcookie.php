@@ -9,7 +9,7 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 10000),"/", "julianibus
 <html>
 <body>
 
-<?php echo "Cookie is set!"; ?>
+<?php echo "Cookie is set!<br><a href='index.php'>Back</a>"; ?>
 
 </body>
 </html> 
