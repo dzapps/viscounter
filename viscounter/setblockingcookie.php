@@ -1,8 +1,13 @@
 <?php
+
+$host = $_SERVER['HTTP_HOST'];
+preg_match("/[^\.\/]+\.[^\.\/]+$/", $host, $DOMAIN);
+
 $cookie_name = "viscounter";
 $cookie_value = "true";
+
 setcookie($cookie_name, $cookie_value, time() + (86400 * 10000), "/");
-setcookie($cookie_name, $cookie_value, time() + (86400 * 10000),"/", "julianibus.de");
+setcookie($cookie_name, $cookie_value, time() + (86400 * 10000),"/", $DOMAIN[0]);
 ?>
 
 <!DOCTYPE html>
